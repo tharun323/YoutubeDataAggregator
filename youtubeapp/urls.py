@@ -11,7 +11,13 @@ router.register(r'VideoStatsViewSet',views.VideoStatsViewSet,base_name='VideoSta
 
 
 urlpatterns = [
+    url('getchannelstatsdata',views.getchannelstatsdata,name="getchannelstatsdata"),
+    url('getvideomasterdata',views.getvideomasterdata,name="getvideomasterdata"),
+    url('getvideostats',views.getvideostats,name="getvideostats"),
     url('api/', include(router.urls)),
 ]
+
+
+
 
 
