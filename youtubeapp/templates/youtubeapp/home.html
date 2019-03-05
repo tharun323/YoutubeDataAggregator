@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Youtube Data Aggregator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<style>
+  html, body { height: 100%; padding: 0; margin: 0; }
+div { width: 50%; height: 50%; float: left; }
+#div1 { background: #DDD; }
+#div2 { background: #AAA; }
+#div3 { background: #777; }
+#div4 { background: #444; }
+.w3-button {width:150px;}
+
+</style>
+
+<div id="div1" style="text-align:center;">
+  <h1>Channel Master Data</h1>
+  <a href="#"  onclick='window.open("http://127.0.0.1:8000/youtube/getchannelmasterui");return false;' ><button>Channel Master data</button></a>
+</div>
+<div id="div2" style="text-align:center;">
+  <h1>Channel Statistics</h1>
+  <a href="#"  onclick='window.open("http://127.0.0.1:8000/youtube/getchannelstatsui");return false;' ><button>Channel Statistics</button></a>
+</div>
+<div id="div3" style="text-align:center;">
+  <h1>Video Master Data</h1>
+  <a href="#"  onclick='window.open("http://127.0.0.1:8000/youtube/getvideomasterui");return false;' ><button>Video Master Data</button></a>
+</div>
+<div id="div4" style="text-align:center;">
+  <h1>Video Statistics</h1>
+  <button><a href="#"  onclick='window.open("http://127.0.0.1:8000/youtube/getvideostatsui");return false;' >Video Statistics</a></button></a>
+</div>
+
+
+</body>
+</html>
+

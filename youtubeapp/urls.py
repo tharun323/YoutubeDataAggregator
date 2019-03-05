@@ -14,11 +14,17 @@ router.register(r'VideoStatsViewSet',views.VideoStatsViewSet,base_name='VideoSta
 
 urlpatterns = [
     url(r'^$', schema_view),
+    url('home',views.home,name='home'),
+    url('getvideostatsui',views.getvideostatsui,name="getvideostatsui"),
     url('getchannelstatsdata',views.getchannelstatsdata,name="getchannelstatsdata"),
     url('getvideomasterdata',views.getvideomasterdata,name="getvideomasterdata"),
     url('getvideostats',views.getvideostats,name="getvideostats"),
+    url('getchannelmasterui',views.getchannelmasterui,name='getchannelmasterui'),
+    url('getvideomasterui',views.getvideomasterui,name='getvideomasterui'),
+    url('getchannelstatsui',views.getchannelstatsui,name='getchannelstatsui'),
     url('api/', include(router.urls)),
 ]
+
 
 
 

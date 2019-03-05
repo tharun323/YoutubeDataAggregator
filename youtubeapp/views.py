@@ -11,6 +11,9 @@ from . filters import *
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 
+
+
+
 class ChannelMasterViewSet(viewsets.ModelViewSet):
     serializer_class = ChannelMasterSerializer
     queryset = ChannelMaster.objects.all()
@@ -93,10 +96,15 @@ def getvideomasterdata(request):
 def getvideostats(request):
     for i in VideoMaster.objects.all():
         try:
-            r=requests.get('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+i.video_id+'&key=AIzaSyCuC7v8wNpETzqFjOKG2zju9wcTQZSt0tg')
-            v_views=json.loads(r.text)['items'][0]['statistics']['viewCount']
+            r=requests.get('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+i.video_id+'&key=AIzaSyDTSx96UF4XekNIWM6Vz0UG2TmYuEFwHVs')
+            print(r)
+            try:
+                v_views=json.loads(r.text)['items'][0]['statistics']['viewCount']
+            except Exception as e:
+                print("there is no Viewcount",e)
         except Exception as e:
-            print("Process will break",e)
+            print(i.__dict__)
+            print("Process will break 1",e)
             break
         try:
             print("I am in try")
@@ -107,3 +115,20 @@ def getvideostats(request):
             print("Process will break",e)
             break
     return HttpResponse("done")
+
+
+def home(request):
+    return render(request,"youtubeapp/home.html")
+
+def getchannelmasterui(request):
+    return render(request,"youtubeapp/index.html")
+
+def getvideomasterui(request):
+    return render(request,"youtubeapp/video_master.html")
+
+def getchannelstatsui(request):
+    return render(request,"youtubeapp/channel_stats.html")
+
+def getvideostatsui(request):
+    return render(request,"youtubeapp/video_stats.html")
+

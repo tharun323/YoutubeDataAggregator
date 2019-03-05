@@ -21,7 +21,7 @@ class VideoMasterSerializer(serializers.ModelSerializer):
         depth=1
 
 class VideoStatsSerializer(serializers.ModelSerializer):
-    # video_master = VideoMasterSerializer()
+    video_master = VideoMasterSerializer()
     class Meta:
         model=VideoStats
         fields='__all__'
