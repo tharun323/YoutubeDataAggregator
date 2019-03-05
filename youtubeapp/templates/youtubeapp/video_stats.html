@@ -12,6 +12,7 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
+ console.log("This is america");
     const columnDefs = [
         {headerName: "video_master", field: "video_master", sortable: true},
         {headerName: "total_views", field: "total_views", sortable: true,filter: true},
@@ -28,7 +29,9 @@
     fetch('http://127.0.0.1:8000/youtube/api/VideoStatsViewSet/').then(function (response) {
         return response.json();
     }).then(function (data) {
-    console.log(data);
+
+        console.log(data[0]['video_master']['video_name']);
+
         gridOptions.api.setRowData(data);
     })
 </script>
