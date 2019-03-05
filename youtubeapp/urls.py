@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 from . views import *
 from . import views
+from rest_framework_swagger.views import get_swagger_view
+schema_view = get_swagger_view(title='Pastebin API')
 router = routers.DefaultRouter()
 router.register(r'ChannelMasterViewSet', views.ChannelMasterViewSet, base_name='ChannelMaster')
 router.register(r'ChannelStatsViewSet',views.ChannelStatsViewSet,base_name='ChannelStats')
@@ -11,6 +13,7 @@ router.register(r'VideoStatsViewSet',views.VideoStatsViewSet,base_name='VideoSta
 
 
 urlpatterns = [
+    url(r'^$', schema_view),
     url('getchannelstatsdata',views.getchannelstatsdata,name="getchannelstatsdata"),
     url('getvideomasterdata',views.getvideomasterdata,name="getvideomasterdata"),
     url('getvideostats',views.getvideostats,name="getvideostats"),
