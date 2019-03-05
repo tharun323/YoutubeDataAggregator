@@ -8,7 +8,7 @@ class ChannelMaster(models.Model):
 
 class ChannelStats(models.Model):
     channel_master = models.ForeignKey('ChannelMaster', on_delete=models.CASCADE)
-    total_views=models.IntegerField(default=None)
+    total_views=models.BigIntegerField(default=None)
     time_stamp=models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.channel_master
@@ -22,7 +22,8 @@ class VideoMaster(models.Model):
 
 class VideoStats(models.Model):
     video_master = models.ForeignKey('VideoMaster', on_delete=models.CASCADE)
-    total_views=models.IntegerField(default=None)
+    total_views=models.BigIntegerField(default=None)
     time_stamp=models.DateTimeField(auto_now=True)
     def __str__(self):
-        return self.video_master
+        return str(self.video_master)
+

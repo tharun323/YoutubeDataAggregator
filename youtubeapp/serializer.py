@@ -7,17 +7,25 @@ class ChannelMasterSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class ChannelStatsSerializer(serializers.ModelSerializer):
+    # channel_master = ChannelMasterSerializer()
     class Meta:
         model=ChannelStats
         fields='__all__'
+        depth=1
 
 class VideoMasterSerializer(serializers.ModelSerializer):
+    # channel_master = ChannelMasterSerializer()
     class Meta:
         model=VideoMaster
         fields='__all__'
+        depth=1
 
 class VideoStatsSerializer(serializers.ModelSerializer):
+    # video_master = VideoMasterSerializer()
     class Meta:
         model=VideoStats
         fields='__all__'
+        depth=1
+
+
 
