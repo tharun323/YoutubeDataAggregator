@@ -41,11 +41,11 @@
 
 **---Further Steps---**
 
--Load the Initial Data in to the data base (Channel List with id's) using  `python manage.py loaddata initialdata'
+-Load the Initial Data in to the data base (Channel List with id's) using  `python manage.py loaddata initialdata`
 
--Individually run the functions in the `data_req.py' file both for the `channel_stats` and `video_stats'
+-Individually run the functions in the `data_req.py` file both for the `channel_stats` and `video_stats'
 
--Now goto `127.0.0.1:8000/youtube/home' for viewing the Home page of the App.
+-Now goto `127.0.0.1:8000/youtube/home` for viewing the Home page of the App.
 
 
 
