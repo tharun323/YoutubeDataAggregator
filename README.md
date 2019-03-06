@@ -30,7 +30,7 @@
 
 -Then Goto datagg folder path and run the `manage.py` file using `python manage.py runserver` after the server starts running.
 
--Change the MySQL backend as per your requirements, settings present in `settings.py`
+-Change the MySQL backend as per your requirements, settings present in `settings.py` Also change the Logfile path in the `Logger`     dictionary in `settings.py`
 
 -Run the Migrations using `python manage.py migrate` and 'python manage.py makemigrations`
 
