@@ -14,7 +14,6 @@ import schedule
 import time
 logger = logging.getLogger(__name__)
 
-
 l=[
 'UC-lHJZR3Gqxm24_Vd_AJ5Yw',
 'UCq-Fj5jknLsUf-MWSy4_brA',
@@ -29,6 +28,7 @@ l=[
 ]
 
 def getchannelstatsdata():
+    """Get the stats for the Channel Master data like the entire views and subs count"""
     for i in l:
         r=requests.get("https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id="+i+"&key=AIzaSyCuC7v8wNpETzqFjOKG2zju9wcTQZSt0tg")
         viewscount = json.loads(r.text)['items'][0]['statistics']['viewCount']
@@ -42,6 +42,7 @@ def getchannelstatsdata():
     return True
 
 def getvideomasterdata():
+    """Get the videos across all channels gets 5 videos from each channel """
     c=0
     for i in l:
         try:
@@ -70,6 +71,7 @@ def getvideomasterdata():
     return True
 
 def getvideostats():
+    """Gets individual video stats for various vids that are collected"""
     for i in VideoMaster.objects.all():
         try:
             r=requests.get('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+i.video_id+'&key=AIzaSyDTSx96UF4XekNIWM6Vz0UG2TmYuEFwHVs')
@@ -111,7 +113,7 @@ def getvideostats():
 
 
 # schedule.every().minute.do(getchannelstatsdata)
-# schedule.every().minute.do(getvideomasterdata)
+# # schedule.every().minute.do(getvideomasterdata)
 # schedule.every().minute.do(getvideostats)
 #
 # while True:

@@ -3,7 +3,9 @@ import matplotlib.pyplot as plt
 from . models import *
 from django.shortcuts import render,redirect,reverse
 
+
 def vidstatsplot(request):
+    """Plotly chart for the Individual Video stats this is: views vs date time"""
     if request.method == 'GET':  # If the form is submitted
         search_query = request.GET.get('search_box', None)
         print("i am in this method")
@@ -25,6 +27,7 @@ def vidstatsplot(request):
     return render(request,"youtubeapp/video_stats.html")
 
 def chanstatplot(request):
+    """Plotly chart for the Individual Channel stats this is: views vs date time"""
     if request.method=='GET':
         search_query=request.GET.get('search_box',None)
         datelist = list()

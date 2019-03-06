@@ -17,17 +17,14 @@ app_name="youtubeapp"
 
 urlpatterns = [
     url(r'^$', schema_view),
-    url('home',views.home,name='home'),
-    url('vidstatsplot',vidstatsplot,name="vidstatsplot"),
-    url('chanstatplot',chanstatplot,name="chanstatplot"),
-    url('getvideostatsui',views.getvideostatsui,name="getvideostatsui"),
-    # url('getchannelstatsdata',getchannelstatsdata,name="getchannelstatsdata"),
-    # url('getvideomasterdata',getvideomasterdata,name="getvideomasterdata"),
-    # url('getvideostats',getvideostats,name="getvideostats"),
-    url('getchannelmasterui',views.getchannelmasterui,name='getchannelmasterui'),
-    url('getvideomasterui',views.getvideomasterui,name='getvideomasterui'),
-    url('getchannelstatsui',views.getchannelstatsui,name='getchannelstatsui'),
-    url('api/', include(router.urls)),
+    url('home',views.home,name='home'), #home page url
+    url('vidstatsplot',vidstatsplot,name="vidstatsplot"), #individual vid stats displayed by MatPlotLib
+    url('chanstatplot',chanstatplot,name="chanstatplot"), #individual Channel stats displayed by MatPlotLib
+    url('getvideostatsui',views.getvideostatsui,name="getvideostatsui"),# Individual Vid Stats UI
+    url('getchannelmasterui',views.getchannelmasterui,name='getchannelmasterui'),# Individual Channel Stats UI
+    url('getvideomasterui',views.getvideomasterui,name='getvideomasterui'),# Individual Vid Master details UI
+    url('getchannelstatsui',views.getchannelstatsui,name='getchannelstatsui'),# Individual Channel  Stats UI
+    url('api/', include(router.urls)), #API root
 ]
 
 
