@@ -10,9 +10,21 @@ from django.views.decorators.cache import cache_page
 from . filters import *
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
+import matplotlib
+import matplotlib.pyplot as plt
 
-
-
+def vidstatsplot(request):
+    if request.method == 'GET':  # If the form is submitted
+        search_query = request.GET.get('search_box', None)
+        datelist=list()
+        valuelist=list()
+        for i in VideoStats.objects.all():
+            if(i.video_master.video_id==search_query):
+                valuelist.append(i.total_views)
+                datelist.append(i.time_stamp)
+        plt.plot(datelist, valuelist)
+        plt.show()
+    return render(request,"youtubeapp/video_stats.html")
 
 class ChannelMasterViewSet(viewsets.ModelViewSet):
     serializer_class = ChannelMasterSerializer
@@ -22,18 +34,15 @@ class ChannelMasterViewSet(viewsets.ModelViewSet):
     # filter_backends = (filters.SearchFilter,)
     # search_fields = ('channel_id', 'channel_name')
 
-
 class ChannelStatsViewSet(viewsets.ModelViewSet):
     serializer_class = ChannelStatsSerializer
     queryset = ChannelStats.objects.all()
-
 
 class VideoMasterViewSet(viewsets.ModelViewSet):
     serializer_class = VideoMasterSerializer
     queryset = VideoMaster.objects.all()
     # filter_backends = (DjangoFilterBackend,)
     # filterset_fields = ('video_id', 'video_name')
-
 
 class VideoStatsViewSet(viewsets.ModelViewSet):
     serializer_class = VideoStatsSerializer

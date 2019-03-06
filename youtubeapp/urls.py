@@ -11,10 +11,12 @@ router.register(r'ChannelStatsViewSet',views.ChannelStatsViewSet,base_name='Chan
 router.register(r'VideoMasterViewSet',views.VideoMasterViewSet,base_name='VideoMaster')
 router.register(r'VideoStatsViewSet',views.VideoStatsViewSet,base_name='VideoStats')
 
+app_name="youtubeapp"
 
 urlpatterns = [
     url(r'^$', schema_view),
     url('home',views.home,name='home'),
+    url('vidstatsplot',views.vidstatsplot,name="vidstatsplot"),
     url('getvideostatsui',views.getvideostatsui,name="getvideostatsui"),
     url('getchannelstatsdata',views.getchannelstatsdata,name="getchannelstatsdata"),
     url('getvideomasterdata',views.getvideomasterdata,name="getvideomasterdata"),

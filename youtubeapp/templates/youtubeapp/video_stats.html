@@ -6,6 +6,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+<br><br>
+<center>
+<center><h2>Enter the Video Id to get the statistics</h2></center>
+    <br><br>
+   <form type="get" action="{%url 'youtubeapp:vidstatsplot' %}" style="margin: 0">
+    <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
+    <button id="search_submit" type="submit" >Submit</button>
+
+   </form>
+
+</center>
 <center><h3 style="padding-top:30px;"><u>Video Statistics<u></h3></center>
 <div class="container" style="padding-right:50px;">
 <div id="myGrid" style="height: 250px; width:900px;" class="ag-theme-balham"></div>
@@ -35,6 +46,7 @@
         gridOptions.api.setRowData(data);
     })
 </script>
+
 </body>
 
 
