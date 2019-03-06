@@ -1,0 +1,76 @@
+
+[
+  {
+    "model": "youtubeapp.ChannelMaster",
+    "pk": 1,
+    "fields": {
+      "channel_id": "UC-lHJZR3Gqxm24_Vd_AJ5Yw",
+      "channel_name": "PewDiePie"
+    }
+  },
+        {
+    "model": "youtubeapp.ChannelMaster",
+    "pk": 2,
+    "fields": {
+      "channel_id": "UCq-Fj5jknLsUf-MWSy4_brA",
+      "channel_name": "T-Series"
+    }
+  },{
+    "model": "youtubeapp.ChannelMaster",
+    "pk": 3,
+    "fields": {
+      "channel_id": "UC295-Dw_tDNtZXFeAPAW6Aw",
+      "channel_name": "5-Minute Crafts"
+    }
+  },{
+    "model": "youtubeapp.ChannelMaster",
+    "pk": 4,
+    "fields": {
+      "channel_id": "UCffDXn7ycAzwL2LDlbyWOTw",
+      "channel_name": "Canal KondZilla"
+    }
+  },{
+    "model": "youtubeapp.ChannelMaster",
+    "pk": 5,
+    "fields": {
+      "channel_id": "UCIwFjwMjI0y7PDBVEO9-bkQ",
+      "channel_name": "Justin Bieber"
+    }
+  },{
+    "model": "youtubeapp.ChannelMaster",
+    "pk": 6,
+    "fields": {
+      "channel_id": "UCpEhnqL0y41EpW2TvWAHD7Q",
+      "channel_name": "SET India"
+    }
+  },{
+    "model": "youtubeapp.ChannelMaster",
+    "pk": 7,
+    "fields": {
+      "channel_id": "UCJ5v_MCY6GNUBTO8-D3XoAg",
+      "channel_name": "WWE"
+    }
+  },{
+    "model": "youtubeapp.ChannelMaster",
+    "pk": 8,
+    "fields": {
+      "channel_id": "UCRijo3ddMTht_IHyNSNXpNQ",
+      "channel_name": "Dude Perfect"
+    }
+  },{
+    "model": "youtubeapp.ChannelMaster",
+    "pk": 9,
+    "fields": {
+      "channel_id": "UCbCmjCuTUZos6Inko4u57UQ",
+      "channel_name": "Cocomelon - Nursery Rhymes"
+    }
+  },{
+    "model": "youtubeapp.ChannelMaster",
+    "pk": 10,
+    "fields": {
+      "channel_id": "UCZJ7m7EnCNodqnu5SAtg8eQ",
+      "channel_name": "HolaSoyGerman"
+    }
+  }
+
+]

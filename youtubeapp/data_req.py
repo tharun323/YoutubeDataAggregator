@@ -84,10 +84,12 @@ def getvideostats():
     return True
 
 
-#
-schedule.every().minute.do(getchannelstatsdata)
-schedule.every().minute.do(getvideostats)
 
-while True:
+schedule.every().hour.do(getchannelstatsdata)
+schedule.every().hour.do(getvideostats)
+
+i=0
+while i<5:
+    i+=1
     schedule.run_pending()
     time.sleep(1)

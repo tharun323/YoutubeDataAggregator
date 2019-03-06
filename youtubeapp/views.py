@@ -10,6 +10,9 @@ from django.views.decorators.cache import cache_page
 from . filters import *
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
+import matplotlib
+import matplotlib.pyplot as plt
+
 
 class ChannelMasterViewSet(viewsets.ModelViewSet):
     serializer_class = ChannelMasterSerializer
@@ -32,6 +35,18 @@ class VideoMasterViewSet(viewsets.ModelViewSet):
 class VideoStatsViewSet(viewsets.ModelViewSet):
     serializer_class = VideoStatsSerializer
     queryset = VideoStats.objects.all()
+
+# data = json.loads(r.text)
+# print(data['items'])
+# for i in range(0,len(data['items'])):
+# # print(data['items'][i]['id']['videoId'])
+#     x=data['items'][i]['id']['videoId']
+#     r = requests.get("https://www.googleapis.com/youtube/v3/videos?part=statistics&id="+x+"&key=AIzaSyBw0grXPH8gNIDwtuUw3Q-HgzGDULN_JkE")
+#     print(json.loads(r.text)['items'][0]['statistics']['viewCount'])
+#get entire channel statistics
+#https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=UC_x5XG1OV2P6uZZ5FSM9Ttw&key={YOUR_API_KEY}
+
+
 
 def home(request):
     return render(request,"youtubeapp/home.html")
