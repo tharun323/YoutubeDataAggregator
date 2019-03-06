@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^$', schema_view),
     url('home',views.home,name='home'),
     url('vidstatsplot',vidstatsplot,name="vidstatsplot"),
+    url('chanstatplot',chanstatplot,name="chanstatplot"),
     url('getvideostatsui',views.getvideostatsui,name="getvideostatsui"),
     # url('getchannelstatsdata',getchannelstatsdata,name="getchannelstatsdata"),
     # url('getvideomasterdata',getvideomasterdata,name="getvideomasterdata"),

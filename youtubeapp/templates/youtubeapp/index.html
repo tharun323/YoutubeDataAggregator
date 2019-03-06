@@ -15,6 +15,7 @@
     const columnDefs = [
         {headerName: "channel_id", field: "channel_id", sortable: true},
         {headerName: "channel_name", field: "channel_name", sortable: true,filter: true},
+        {headername: "description",field:"description"}
     ];
     const gridOptions = {
         columnDefs: columnDefs,
@@ -30,11 +31,6 @@
         gridOptions.api.setRowData(data);
     })
 </script>
-<form method="GET" action="">
-    <input type="text" placeholder="keyword of Movie/Quote " name="q"/>
-    <input type="submit" value="Search"/>
-
-</form>
 </body>
 
 

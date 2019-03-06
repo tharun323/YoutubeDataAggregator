@@ -6,10 +6,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<br><br>
 <center>
-<center><h2>Enter the Video Id to get the statistics</h2></center>
-    <br><br>
+<center></center><h2>Enter the Video Id to get the statistics</h2>
    <form type="get" action="{%url 'youtubeapp:vidstatsplot' %}" style="margin: 0">
     <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
     <button id="search_submit" type="submit" >Submit</button>
@@ -28,6 +26,9 @@
         {headerName: "video_master", field: "video_master", sortable: true},
         {headerName: "total_views", field: "total_views", sortable: true,filter: true},
         {headerName: "time_stamp", field: "time_stamp", sortable: true,filter: true},
+        {headerName:"like_count",field:"like_count",sortable:true},
+        {headerName:"dislike_count",field:"dislike_count",sortable:true},
+        {headerName:"comment_count",field:"comment_count",sortable:true},
 
     ];
     const gridOptions = {

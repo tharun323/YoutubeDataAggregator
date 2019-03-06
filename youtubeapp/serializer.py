@@ -10,7 +10,7 @@ class ChannelStatsSerializer(serializers.ModelSerializer):
     channel_master = ChannelMasterSerializer()
     class Meta:
         model=ChannelStats
-        fields=('channel_master','total_views','time_stamp')
+        fields=('channel_master','total_views','time_stamp','subscriber_count')
 
 class VideoMasterSerializer(serializers.ModelSerializer):
     channel_master = ChannelMasterSerializer(read_only=True)
@@ -22,7 +22,7 @@ class VideoStatsSerializer(serializers.ModelSerializer):
     video_master = VideoMasterSerializer(read_only=True)
     class Meta:
         model=VideoStats
-        fields=('total_views','time_stamp','video_master')
+        fields=('total_views','time_stamp','video_master','like_count','dislike_count','comment_count')
 
 
 

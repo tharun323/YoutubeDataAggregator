@@ -15,17 +15,26 @@ import time
 logger = logging.getLogger(__name__)
 
 
-l = ['UC-lHJZR3Gqxm24_Vd_AJ5Yw', 'UCq-Fj5jknLsUf-MWSy4_brA', 'UC295-Dw_tDNtZXFeAPAW6Aw',
-     'UCffDXn7ycAzwL2LDlbyWOTw', 'UCIwFjwMjI0y7PDBVEO9-bkQ', 'UC0v-tlzsn0QZwJnkiaUSJVQ',
-     'UCJ5v_MCY6GNUBTO8-D3XoAg', 'UCRijo3ddMTht_IHyNSNXpNQ', 'UCbCmjCuTUZos6Inko4u57UQ',
-     'UCZJ7m7EnCNodqnu5SAtg8eQ']
+l=[
+'UC-lHJZR3Gqxm24_Vd_AJ5Yw',
+'UCq-Fj5jknLsUf-MWSy4_brA',
+'UC295-Dw_tDNtZXFeAPAW6Aw',
+'UCffDXn7ycAzwL2LDlbyWOTw',
+'UCIwFjwMjI0y7PDBVEO9-bkQ',
+'UCpEhnqL0y41EpW2TvWAHD7Q',
+'UCJ5v_MCY6GNUBTO8-D3XoAg',
+'UCRijo3ddMTht_IHyNSNXpNQ',
+'UCbCmjCuTUZos6Inko4u57UQ',
+'UCZJ7m7EnCNodqnu5SAtg8eQ',
+]
 
 def getchannelstatsdata():
     for i in l:
         r=requests.get("https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id="+i+"&key=AIzaSyCuC7v8wNpETzqFjOKG2zju9wcTQZSt0tg")
-        data = json.loads(r.text)['items'][0]['statistics']['viewCount']
+        viewscount = json.loads(r.text)['items'][0]['statistics']['viewCount']
+        subs_count = json.loads(r.text)['items'][0]['statistics']['subscriberCount']
         try:
-            p=ChannelStats(total_views=data,channel_master=ChannelMaster.objects.get(channel_id=i))
+            p=ChannelStats(total_views=viewscount,subscriber_count=subs_count,channel_master=ChannelMaster.objects.get(channel_id=i))
             p.save()
             print("saved",p.__dict__)
         except Exception as e:
@@ -68,14 +77,30 @@ def getvideostats():
             try:
                 v_views=json.loads(r.text)['items'][0]['statistics']['viewCount']
             except Exception as e:
-                logger.error("there is no Viewcount",e)
+                v_views=0
+                logger.error("there is error views count", e)
+            try:
+                like_count=json.loads(r.text)['items'][0]['statistics']['likeCount']
+            except Exception as e:
+                like_count=0
+                logger.error("there is error likes count", e)
+            try:
+                dislike_count=json.loads(r.text)['items'][0]['statistics']['dislikeCount']
+            except Exception as e:
+                dislike_count=0
+                logger.error("there is error dislike count", e)
+            try:
+                comment_count=json.loads(r.text)['items'][0]['statistics']['commentCount']
+            except Exception as e:
+                comment_count=0
+                logger.error("there is error comment count",e)
         except Exception as e:
             print(i.__dict__)
-            logger.error("Process will break 1",e)
+            logger.error("Error in requests or Ran out of Limit",e)
             break
         try:
             print("I am in try")
-            p = VideoStats(total_views=v_views, video_master=VideoMaster.objects.get(video_id=i.video_id))
+            p = VideoStats(dislike_count=dislike_count,comment_count=comment_count,like_count=like_count,total_views=v_views, video_master=VideoMaster.objects.get(video_id=i.video_id))
             p.save()
             print("this is saved",p)
         except Exception as e:
@@ -85,11 +110,10 @@ def getvideostats():
 
 
 
-schedule.every().hour.do(getchannelstatsdata)
-schedule.every().hour.do(getvideostats)
-
-i=0
-while i<5:
-    i+=1
-    schedule.run_pending()
-    time.sleep(1)
+# schedule.every().minute.do(getchannelstatsdata)
+# schedule.every().minute.do(getvideomasterdata)
+# schedule.every().minute.do(getvideostats)
+#
+# while True:
+#     schedule.run_pending()
+#     time.sleep(1)
