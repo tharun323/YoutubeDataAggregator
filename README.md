@@ -41,11 +41,12 @@
 
 **---Further Steps---**
 
--Load the Initial Data in to the Channel Master ( Just run the `loaddata.py` file present in the `youtubeapp` folder).
+-Load the Initial Data in to the data base (Channel List with id's) using  `python manage.py loaddata initialdata`
 
--Now Follow the URL's in the 'urls.py' to go through all URL's
+-Individually run the functions in the `data_req.py` file both for the `channel_stats` and `video_stats' or just uncomment the part in scheduling part in the `data_req.py` 
 
--Further steps
+-Now goto `127.0.0.1:8000/youtube/home` for viewing the Home page of the App.
+
 
 
 
