@@ -9,7 +9,10 @@ from django.views.decorators.cache import cache_page
 from . filters import *
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
-
+import logging
+import schedule
+import time
+logger = logging.getLogger(__name__)
 
 
 l = ['UC-lHJZR3Gqxm24_Vd_AJ5Yw', 'UCq-Fj5jknLsUf-MWSy4_brA', 'UC295-Dw_tDNtZXFeAPAW6Aw',
@@ -17,7 +20,7 @@ l = ['UC-lHJZR3Gqxm24_Vd_AJ5Yw', 'UCq-Fj5jknLsUf-MWSy4_brA', 'UC295-Dw_tDNtZXFeA
      'UCJ5v_MCY6GNUBTO8-D3XoAg', 'UCRijo3ddMTht_IHyNSNXpNQ', 'UCbCmjCuTUZos6Inko4u57UQ',
      'UCZJ7m7EnCNodqnu5SAtg8eQ']
 
-def getchannelstatsdata(request):
+def getchannelstatsdata():
     for i in l:
         r=requests.get("https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id="+i+"&key=AIzaSyCuC7v8wNpETzqFjOKG2zju9wcTQZSt0tg")
         data = json.loads(r.text)['items'][0]['statistics']['viewCount']
@@ -26,10 +29,10 @@ def getchannelstatsdata(request):
             p.save()
             print("saved",p.__dict__)
         except Exception as e:
-            print(e)
-    return HttpResponse("done")
+            logger.error(e)
+    return True
 
-def getvideomasterdata(request):
+def getvideomasterdata():
     c=0
     for i in l:
         try:
@@ -38,8 +41,8 @@ def getvideomasterdata(request):
             r = requests.get("https://www.googleapis.com/youtube/v3/search?key=AIzaSyCuC7v8wNpETzqFjOKG2zju9wcTQZSt0tg&channelId=" + i + "&part=snippet,id&order=date&maxResults=5")
             data = json.loads(r.text)
         except Exception as e:
-            print("The process has errors",e)
-            print("I am at this channel",c)
+            logger.error("The process has errors",e)
+            logger.error("I am at this channel",c)
             break
         for j in range(0,len(data['items'])):
             vid=json.loads(r.text)['items'][j]['id']['videoId']
@@ -47,17 +50,17 @@ def getvideomasterdata(request):
             try:
                 q = VideoMaster(video_id=vid, video_name=vname, channel_master=ChannelMaster.objects.get(channel_id=i))
                 q.save()
-                # print("this is saved",q.__dict__)
+                print("this is saved",q.__dict__)
             except Exception as e:
                 print(e)
     if(c==len(l)):
-        print("all the channels are processed")
-        print(c,len(l))
+        logger.error("all the channels are processed")
+        logger.error(c,len(l))
     else:
-        print("%s are not processed",len(l)-c)
-    return HttpResponse("Done")
+        logger.error("%s are not processed",len(l)-c)
+    return True
 
-def getvideostats(request):
+def getvideostats():
     for i in VideoMaster.objects.all():
         try:
             r=requests.get('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+i.video_id+'&key=AIzaSyDTSx96UF4XekNIWM6Vz0UG2TmYuEFwHVs')
@@ -65,10 +68,10 @@ def getvideostats(request):
             try:
                 v_views=json.loads(r.text)['items'][0]['statistics']['viewCount']
             except Exception as e:
-                print("there is no Viewcount",e)
+                logger.error("there is no Viewcount",e)
         except Exception as e:
             print(i.__dict__)
-            print("Process will break 1",e)
+            logger.error("Process will break 1",e)
             break
         try:
             print("I am in try")
@@ -76,6 +79,15 @@ def getvideostats(request):
             p.save()
             print("this is saved",p)
         except Exception as e:
-            print("Process will break",e)
+            logger.error("Process will break",e)
             break
-    return HttpResponse("done")
+    return True
+
+
+#
+schedule.every().minute.do(getchannelstatsdata)
+schedule.every().minute.do(getvideostats)
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)
