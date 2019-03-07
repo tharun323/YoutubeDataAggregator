@@ -1,6 +1,9 @@
 from . models import *
 from rest_framework import serializers
 
+"""Serializers to create the RestFul API to use it in the Aggrid in the frontend"""
+
+
 class ChannelMasterSerializer(serializers.ModelSerializer):
     class Meta:
         model=ChannelMaster

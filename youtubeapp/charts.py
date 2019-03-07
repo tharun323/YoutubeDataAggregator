@@ -1,11 +1,19 @@
 import matplotlib
 import matplotlib.pyplot as plt
 from . models import *
-from django.shortcuts import render,redirect,reverse
+from django.shortcuts import render,redirect,reverse,HttpResponseRedirect
 
 
 def vidstatsplot(request):
-    """Plotly chart for the Individual Video stats this is: views vs date time"""
+    """Plotly chart for the Individual Video stats this is: views vs date time
+
+    using the video id from the UI and collects the related data from DB
+    and plots the views vs datatime Chart using the matplotlib
+
+    Charts can be configured as per wish
+    Below one is just a basic Line chart
+
+    """
     if request.method == 'GET':  # If the form is submitted
         search_query = request.GET.get('search_box', None)
         print("i am in this method")
@@ -24,10 +32,17 @@ def vidstatsplot(request):
         plt.ylabel('Number of Views', fontsize=15)
         plt.plot(datelist, valuelist)
         plt.show()
-    return render(request,"youtubeapp/video_stats.html")
+    return HttpResponseRedirect('/youtube/getvideostatsui')
 
 def chanstatplot(request):
-    """Plotly chart for the Individual Channel stats this is: views vs date time"""
+    """Plotly chart for the Individual Video stats this is: views vs date time
+
+    using the Channel id from the UI and collects the related data from DB
+    and plots the views vs datatime Chart using the matplotlib
+
+    Charts can be configured as per wish
+    Below one is just a basic Line chart"""
+
     if request.method=='GET':
         search_query=request.GET.get('search_box',None)
         datelist = list()
@@ -42,5 +57,5 @@ def chanstatplot(request):
         plt.ylabel('Number of Views', fontsize=15)
         plt.plot(datelist, valuelist)
         plt.show()
-    return render(request, "youtubeapp/channel_stats.html")
+    return HttpResponseRedirect('/youtube/getchannelstatsui')
 

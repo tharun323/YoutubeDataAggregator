@@ -14,6 +14,7 @@ import schedule
 import time
 logger = logging.getLogger(__name__)
 
+"""List of 10 youtube channel id's"""
 l=[
 'UC-lHJZR3Gqxm24_Vd_AJ5Yw',
 'UCq-Fj5jknLsUf-MWSy4_brA',
@@ -30,6 +31,7 @@ l=[
 def getchannelstatsdata():
     """Get the stats for the Channel Master data like the entire views and subs count"""
     for i in l:
+    #sends request to the youtube API and collects the statistics
         r=requests.get("https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id="+i+"&key=AIzaSyCuC7v8wNpETzqFjOKG2zju9wcTQZSt0tg")
         viewscount = json.loads(r.text)['items'][0]['statistics']['viewCount']
         subs_count = json.loads(r.text)['items'][0]['statistics']['subscriberCount']
@@ -42,8 +44,14 @@ def getchannelstatsdata():
     return True
 
 def getvideomasterdata():
-    """Get the videos across all channels gets 5 videos from each channel """
+    """Get the videos across all channels gets 5 videos from each channel
+    This sends request to the Channels and collects 5 videos from it and saves in the
+    VideoMaster data, Using this Video id we can collect further stats
+
+    run this function online once
+    """
     c=0
+
     for i in l:
         try:
             c+=1
@@ -71,7 +79,13 @@ def getvideomasterdata():
     return True
 
 def getvideostats():
-    """Gets individual video stats for various vids that are collected"""
+    """Gets individual video stats for various vids that are collected
+    sends the request to the youtube api and collects the vid stats using the video id
+    collected from the getvideomaster() function
+
+    Saves the collected data in to the VideoStats Model
+
+    """
     for i in VideoMaster.objects.all():
         try:
             r=requests.get('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+i.video_id+'&key=AIzaSyDTSx96UF4XekNIWM6Vz0UG2TmYuEFwHVs')
@@ -110,12 +124,18 @@ def getvideostats():
             break
     return True
 
+# This is the scheduler just set arguments when to run (hourly , minute or date wise)
+# This will currently run every hour
 
 
-# schedule.every().minute.do(getchannelstatsdata)
-# # schedule.every().minute.do(getvideomasterdata)
-# schedule.every().minute.do(getvideostats)
 #
+# schedule.every().hour.do(getchannelstatsdata)
+# # # schedule.every().hour.do(getvideomasterdata)
+# schedule.every().hour.do(getvideostats)
+# #
+
+# Set the value here if you wanted it to run Infinitely(set True or give condition)
+
 # while True:
 #     schedule.run_pending()
 #     time.sleep(1)

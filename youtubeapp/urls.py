@@ -6,7 +6,7 @@ from . import views
 from rest_framework_swagger.views import get_swagger_view
 from . charts import *
 from . data_req import *
-schema_view = get_swagger_view(title='Pastebin API')
+schema_view = get_swagger_view(title='YouMarket Youtube Data Aggregator API')
 router = routers.DefaultRouter()
 router.register(r'ChannelMasterViewSet', views.ChannelMasterViewSet, base_name='ChannelMaster')
 router.register(r'ChannelStatsViewSet',views.ChannelStatsViewSet,base_name='ChannelStats')
