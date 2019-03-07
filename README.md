@@ -47,6 +47,20 @@
 
 -Now goto `127.0.0.1:8000/youtube/home` for viewing the Home page of the App.
 
+#Screen Shots
+
+-Swagger UI
+![swagger api](https://user-images.githubusercontent.com/37080957/53932931-27f96680-40c2-11e9-8722-ac01efb63e9e.png)
+
+-Stats Chart from Video Data using Matplotlib
+![stats_chart](https://user-images.githubusercontent.com/37080957/53932935-2af45700-40c2-11e9-9ae1-a0f48550dda5.png)
+
+-Aggrid to view the data in frontend
+![aggrid](https://user-images.githubusercontent.com/37080957/53932938-2d56b100-40c2-11e9-965f-9acbb9d2ae26.png)
+
+-RESTful API
+![restapi](https://user-images.githubusercontent.com/37080957/53932942-2f207480-40c2-11e9-90b6-8897780db147.png)
+
 
 
 
